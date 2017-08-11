@@ -42,7 +42,7 @@ public class LoginController {
             return new ModelAndView("login", "error", "用户名或密码错误。");
         } else {
             User user = userService.findUserByUsername(loginCommand.getUsername());
-            user.setLastIp(request.getLocalAddr());
+            user.setLastIp(request.getRemoteAddr());
             user.setLastVisit(new Date());
             userService.loginSuccess(user);
             request.getSession().setAttribute("user", user);
